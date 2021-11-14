@@ -1,13 +1,11 @@
-Announcing: KornShell 93u+m 1.0.0-beta.1
+Announcing: KornShell 93u+m 1.0.0-beta.2
 https://github.com/ksh93/ksh
 
 In May 2020, when every KornShell (ksh93) development project was
 abandoned, development was rebooted in a new fork based on the last
-stable AT&T version: ksh 93u+. Now, one year and hundreds of bug fixes
-later, the first beta version is ready, and KornShell lives again. This
-new fork is called ksh 93u+m as a permanent nod to its origin; a standard
-semantic version number is added starting at 1.0.0-beta.1. Please test
-the beta and report any bugs you find, or help us fix known bugs.
+stable AT&T version: ksh 93u+. This new fork is called ksh 93u+m as a
+permanent nod to its origin. We're restarting it at version 1.0. Please test
+this second beta and report any bugs you find, or help us fix known bugs.
 
 Main developers: Martijn Dekker, Johnothan King, hyenias
 
@@ -21,9 +19,6 @@ Please download the source code tarball from our GitHub releases page:
 	https://github.com/ksh93/ksh/releases
 
 To build, follow the instructions in README.md or src/cmd/ksh93/README.
-Hopefully, OS/distro packagers will make ksh 93u+m packages available soon.
-If you would like to have a binary for your OS from us, ask and we'll try
-to build one and add it to the releases page.
 
 HOW TO GET INVOLVED
 
@@ -32,6 +27,23 @@ Alternatively, email me at martijn@inlv.org with your report.
 To get involved in development, read the brief policy information in
 README.md and then jump right in with a pull request or email a patch.
 See the TODO file in the top-level directory for a to-do list.
+
+MAIN CHANGES SINCE KSH 93U+M 1.0.0-BETA.1
+
+- Various fixes to the test/[ built-in command. It now supports all the same
+  operators as [[ (including =~, \<, \>) except for the different 'and'/'or'
+  operators. Note: test/[ remains deprecated due to its unfixable pitfalls.
+
+- Fixed a bug that could corrupt output if standard output is closed upon
+  initializing the shell.
+
+- Fixed a bug in the [[ compound command: the '!' logical negation operator
+  now correctly negates another '!', e.g., [[ ! ! 1 -eq 1 ]] now returns
+  0/true. Note that this has always been the case for 'test'/'['.
+
+- Fixed SHLVL so that replacing ksh by itself (exec ksh) will not increase it.
+
+- Miscellaneous bugfixes.
 
 MAIN CHANGES SINCE KSH 93U+ 2012-08-01
 
