@@ -20,7 +20,8 @@
 ***********************************************************************/
 #pragma prototyped
 
-#ifndef SYSDECLARE
+#ifndef __builtins_h_defined
+#define __builtins_h_defined
 
 #include	<option.h>
 #include	"FEATURE/options"
@@ -206,7 +207,8 @@ extern const char sh_optwait[];
 #endif /* _cmd_universe */
 extern const char sh_optunset[];
 extern const char sh_optwhence[];
-#endif /* SYSDECLARE */
 extern const char sh_opttimes[];
 
 extern const char e_dict[];
+
+#endif /* __builtins_h_defined */
