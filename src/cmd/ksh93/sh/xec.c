@@ -2481,6 +2481,11 @@ int sh_exec(register const Shnode_t *t, int flags)
 					errormsg(SH_DICT,ERROR_exit(1),e_ident,fname);
 					UNREACHABLE();
 				}
+				if(shp->st.real_fun)
+				{
+					error(ERROR_exit(3),"namespaces cannot be defined in a ksh function scope");
+					UNREACHABLE();
+				}
 				sfputc(stkp,'.');
 				sfputr(stkp,fname,0);
 				np = nv_open(stkptr(stkp,offset),shp->var_tree,flags);
