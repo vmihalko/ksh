@@ -2635,23 +2635,7 @@ static void tilde_expand2(Shell_t *shp, register int offset)
 	char		*cp = NIL(char*);		/* character pointer for tilde expansion result */
 	char		*stakp = stakptr(0);		/* current stack object (&stakp[offset] is tilde string) */
 	int		curoff = staktell();		/* current offset of current stack object */
-	static char	block;				/* for disallowing tilde expansion in .get/.set to change ${.sh.tilde} */
 	/*
-	 * Allow overriding tilde expansion with a .sh.tilde.set or .get discipline function.
-	 */
-	if(!block && SH_TILDENOD->nvfun && SH_TILDENOD->nvfun->disc)
-	{
-		stakfreeze(1);				/* terminate current stack object to avoid data corruption */
-		block++;
-		nv_putval(SH_TILDENOD, &stakp[offset], 0);
-		cp = nv_getval(SH_TILDENOD);
-		block--;
-		if(cp[0]=='\0' || cp[0]=='~')
-			cp = NIL(char*);		/* do not use empty or unexpanded result */
-		stakset(stakp,curoff);			/* restore stack to state on function entry */
-	}
-	/*
-	 * Perform default tilde expansion unless overridden.
 	 * Write the result to the stack, if any.
 	 */
 	stakputc(0);

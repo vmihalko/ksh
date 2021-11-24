@@ -1026,7 +1026,6 @@ set -- \
 	".sh.math" \
 	".sh.pool" \
 	".sh.pid" \
-	".sh.tilde" \
 	"SHLVL" \
 	"CSWIDTH"
 

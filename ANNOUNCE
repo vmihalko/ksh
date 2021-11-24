@@ -82,12 +82,6 @@ New shell language features:
   useful; it now matches all hidden files (dotfiles) in the current
   directory, without the harmful inclusion of '.' and '..'.
 
-- Tilde expansion can now be extended or modified by defining a
-  .sh.tilde.get or .sh.tilde.set discipline function. This replaces a
-  2004 undocumented attempt to add this functionality via a .sh.tilde
-  command, which never worked and crashed the shell. See the manual for
-  details on the new method.
-
 New features in built-in commands:
 
 - Usage error messages now show the --help/--man self-documentation options.
