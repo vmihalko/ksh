@@ -5,6 +5,8 @@ Any uppercase BUG_* names are modernish shell bug IDs.
 
 2021-11-29:
 
+- Fixed a memory fault that prevented ksh from functioning on ARM-based Macs.
+
 - A bug that caused the time keyword to override the errexit shell option has
   been fixed.
 
