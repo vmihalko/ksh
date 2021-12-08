@@ -2152,7 +2152,6 @@ static void comsubst(Mac_t *mp,register Shnode_t* t, int type)
 		mp->shp->inlineno = c;
 		type = 1;
 	}
-#if KSHELL
 	if(t)
 	{
 		fcsave(&save);
@@ -2203,9 +2202,6 @@ static void comsubst(Mac_t *mp,register Shnode_t* t, int type)
 		sh_onstate(SH_HISTORY);
 	if(was_verbose)
 		sh_onstate(SH_VERBOSE);
-#else
-	sp = sfpopen(NIL(Sfio_t*),str,"r");
-#endif
 	*mp = savemac;
 	np = sh_scoped(mp->shp,IFSNOD);
 	nv_putval(np,mp->ifsp,NV_RDONLY);
