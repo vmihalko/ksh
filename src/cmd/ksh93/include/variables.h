@@ -104,6 +104,7 @@ extern void sh_save_rand_seed(struct rand *, int);
 #define SH_MATHNOD	(shgd->bltin_nodes+62)
 #define SH_JOBPOOL	(shgd->bltin_nodes+63)
 #define SH_PIDNOD	(shgd->bltin_nodes+64)
-#define SHLVL		(shgd->bltin_nodes+65)
+#define SH_TILDENOD	(shgd->bltin_nodes+65)
+#define SHLVL		(shgd->bltin_nodes+66)
 
 #endif /* SH_VALNOD */

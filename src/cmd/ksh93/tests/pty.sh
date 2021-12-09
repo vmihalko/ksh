@@ -752,6 +752,24 @@ r ^Success\r\n$
 !
 
 # err_exit #
+((SHOPT_VSH || SHOPT_ESH)) && tst $LINENO <<"!"
+L value of $? after tilde expansion in tab completion
+
+# Make sure that a .sh.tilde.set discipline function
+# cannot influence the exit status.
+
+w .sh.tilde.set() { true; }
+w HOME=/tmp
+w false ~\t
+u false /tmp
+w echo "Exit status is: $?"
+u Exit status is: 1
+w (exit 42)
+w echo $? ~\t
+u 42 /tmp
+!
+
+# err_exit #
 ((SHOPT_MULTIBYTE && (SHOPT_VSH || SHOPT_ESH))) &&
 [[ ${LC_ALL:-${LC_CTYPE:-${LANG:-}}} =~ [Uu][Tt][Ff]-?8 ]] &&
 touch $'XXX\xc3\xa1' $'XXX\xc3\xab' &&
