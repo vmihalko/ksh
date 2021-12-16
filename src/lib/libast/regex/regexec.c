@@ -34,7 +34,7 @@
  */
 
 int
-regexec_20120528(const regex_t* p, const char* s, size_t nmatch, regmatch_t* match, regflags_t flags)
+regexec(const regex_t* p, const char* s, size_t nmatch, regmatch_t* match, regflags_t flags)
 {
 	if (flags & REG_STARTEND)
 	{
