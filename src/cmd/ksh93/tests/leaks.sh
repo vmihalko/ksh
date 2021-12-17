@@ -61,7 +61,7 @@ elif	n=$(ps -o rss= -p "$$" 2>/dev/null) &&
 	let "($n) == ($n) && n > 0"
 then	N=16384
 	unit=KiB
-	tolerance=$((12*N/1024))# tolerate 12 bytes per iteration to account for malloc/ps artefacts
+	tolerance=$((12*N/1024)) # tolerate 12 bytes per iteration to account for malloc/ps artefacts
 	function getmem
 	{
 		ps -o rss= -p "$$"

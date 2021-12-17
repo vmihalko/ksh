@@ -5,6 +5,8 @@ Any uppercase BUG_* names are modernish shell bug IDs.
 
 2021-12-17:
 
+- Release 1.0.0-beta.2.
+
 - Ksh no longer behaves badly when parsing a type definition command
   ('typeset -T' or 'enum') without executing it or when executing it in
   a subshell. Types can now safely be defined in subshells and defined
