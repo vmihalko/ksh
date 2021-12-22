@@ -76,12 +76,12 @@ struct printmap
 
 static const struct printmap  Pmap[] =
 {
-	3,	"csv",	"q+",	"%#q",
-	3,	"ere",	"R",	"%R",
-	4,	"html",	"H",	"%H",
-	7,	"pattern","P",	"%P",
-	3,	"url",	"H+",	"%#H",
-	0,	0,	0,
+	3,	"csv",		"q+",	"%#q",
+	3,	"ere",		"R",	"%R",
+	4,	"html",		"H",	"%H",
+	7,	"pattern",	"P",	"%P",
+	3,	"url",		"H+",	"%#H",
+	0,	0,		0,
 };
 
 
