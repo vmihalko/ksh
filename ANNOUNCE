@@ -47,6 +47,15 @@ New features in built-in commands:
         builtin
         file
 
+- Added three options to the ulimit builtin with the same names and
+  functionality as in Bash:
+  - 'ulimit -k' sets the maximum number of kqueues.
+  - 'ulimit -P' sets the maximum number of pseudo-terminals.
+  - 'ulimit -R' sets the maximum time in microseconds a real-time process
+    can run before blocking.
+  Note that to use these options the operating system must support the
+  corresponding resource limit.
+
 ### MAIN CHANGES between 1.0.0-beta.1 and 1.0.0-beta.2 ###
 
 New features in built-in commands:
