@@ -14,6 +14,10 @@ Any uppercase BUG_* names are modernish shell bug IDs.
   Note that to use these options the operating system must support the
   corresponding resource limit.
 
+- Ported performance optimizations from illumos to improve the performance
+  of the cksum builtin. (Note that the cksum builtin is not enabled by
+  default.)
+
 2021-12-27:
 
 - Two bash-like flags for 'whence' were backported from ksh 93v-:
