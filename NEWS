@@ -1,7 +1,12 @@
-This documents significant changes in the 93u+m branch of AT&T ksh93.
-For full details, see the git log at: https://github.com/ksh93/ksh
+This documents significant changes in the 1.0 branch of ksh 93u+m.
+For full details, see the git log at: https://github.com/ksh93/ksh/tree/1.0
 
 Any uppercase BUG_* names are modernish shell bug IDs.
+
+2022-01-12:
+
+- Added bash-inspired --histreedit and --histverify options that modify history
+  expansion (--histexpand), allowing editing on failure or before execution.
 
 2022-01-04:
 

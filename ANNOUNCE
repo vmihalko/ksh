@@ -1,4 +1,4 @@
-Announcing: KornShell 93u+m 1.0.0-beta.2
+Announcing: KornShell 93u+m 1.0.0-beta.(unreleased)
 https://github.com/ksh93/ksh
 
 In May 2020, when every KornShell (ksh93) development project was
@@ -55,6 +55,15 @@ New features in built-in commands:
     can run before blocking.
   Note that to use these options the operating system must support the
   corresponding resource limit.
+
+New features in shell options:
+
+- The new --histreedit and --histverify options modify history expansion
+  (--histexpand). If --histreedit is on and a history expansion fails, the
+  command line is reloaded into the next prompt's edit buffer, allowing
+  corrections. If --histverify is on, the results of a history expansion are
+  not immediately executed but instead loaded into the next prompt's edit
+  buffer, allowing further changes.
 
 ### MAIN CHANGES between 1.0.0-beta.1 and 1.0.0-beta.2 ###
 
