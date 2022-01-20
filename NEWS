@@ -3,6 +3,10 @@ For full details, see the git log at: https://github.com/ksh93/ksh/tree/1.0
 
 Any uppercase BUG_* names are modernish shell bug IDs.
 
+2022-01-20:
+
+- Fixed a potential crash in history expansion due to a buffer overflow.
+
 2022-01-12:
 
 - Added bash-inspired --histreedit and --histverify options that modify history
