@@ -5,6 +5,9 @@ Any uppercase BUG_* names are modernish shell bug IDs.
 
 2022-01-20:
 
+- Disallow out-of-range event numbers in history expansion (-H/-o histexpand).
+  Previously these were accepted, resulting in corrupted expansions.
+
 - Fixed a potential crash in history expansion due to a buffer overflow.
 
 2022-01-12:
