@@ -56,6 +56,15 @@ New features in built-in commands:
   Note that to use these options the operating system must support the
   corresponding resource limit.
 
+New command line editor features:
+
+- Various keys on extended PC keyboards are now handled as expected in the
+  emacs and vi built-in line editors: Ctrl or Alt + left or right arrow (go
+  back or forward one word), Ctrl+G (cancel reverse search), Ctrl+Delete
+  (delete next word). In addition, the Insert key now escapes the next
+  character in emacs and enters insert mode in vi, and the arrow keys are
+  recognized on more terminals.
+
 New features in shell options:
 
 - The new --histreedit and --histverify options modify history expansion
