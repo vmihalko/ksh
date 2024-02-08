@@ -353,7 +353,8 @@ retry:
 			if(fd>=0)
 			{
 				fcntl(fd,F_SETFD,FD_CLOEXEC);
-				hp->tty = sh_strdup(isatty(2)?ttyname(2):"notty");
+                                const char* tty = ttyname(2);
+				hp->tty = sh_strdup(tty?tty:"notty");
 				hp->auditfp = sfnew(NULL,NULL,-1,fd,SF_WRITE);
 			}
 		}
