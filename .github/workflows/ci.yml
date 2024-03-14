@@ -1,39 +1,32 @@
-name: CI
+name: Build & test
 
-on: [push]
+on: [push, pull_request]
+
+
+permissions:
+  contents: read
 
 jobs:
-
-  Linux:
-    name: Linux
+  build:
     runs-on: ubuntu-latest
+    container: registry.fedoraproject.org/fedora:latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}-${{ matrix.compiler }}-${{ matrix.phase }}
+      cancel-in-progress: true
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [GCC, CLANG]
+        phase: [BUILD, DEFAULT_TESTS, MULTIBYTE_LOCALES_TESTS, DISABLE_SHOPTS_TESTS, SHOPT_SCRIPT_ONLY_TESTS]
     steps:
-    - name: Checkout sources
-      uses: actions/checkout@v2
-    - name: Build
-      run: bin/package make
-    - name: Regression tests
-      run: |
-        PS4="$PS4[ci.yml] "
-        set -o xtrace
-        export TZ=UTC
-        ulimit -n 1024
-        : default regression tests &&
-        script -q -e -c "bin/package test" &&
-        : regression tests with OS-provided multibyte locales &&
-        LANG=nl_NL.UTF-8 script -q -e -c "bin/shtests --locale --nocompile" &&
-        LANG=ja_JP.SJIS  script -q -e -c "bin/shtests --locale --nocompile" &&
-        : disable most SHOPTs, rebuild ksh &&
-        sed --regexp-extended --in-place=.orig \
-          '/^SHOPT (AUDIT|BGX|BRACEPAT|DEVFD|DYNAMIC|EDPREDICT|ESH|FIXEDARRAY|HISTEXPAND|MULTIBYTE|NAMESPACE|OPTIMIZE|SPAWN|STATS|SUID_EXEC|VSH)=/ s/=1?/=0/' \
-          src/cmd/ksh93/SHOPT.sh &&
-        bin/package make &&
-        : default regression tests with SHOPTs disabled &&
-        script -q -e -c "bin/shtests" &&
-        : enable SHOPT_SCRIPTONLY, rebuild ksh &&
-        sed --regexp-extended --in-place=.orig \
-          '/^SHOPT SCRIPTONLY=/ s/=0?/=1/' \
-          src/cmd/ksh93/SHOPT.sh &&
-        bin/package make &&
-        : default regression tests with SHOPT_SCRIPTONLY enabled &&
-        script -q -e -c "bin/shtests"
+      - name: Repository checkout
+        uses: actions/checkout@v4
+
+      - name: Install build & test dependencies
+        run: |
+          sudo dnf install -y dnf-plugins-core clang
+          sudo dnf install -y util-linux glibc-langpack-ja ncurses procps tzdata sed
+          sudo dnf builddep -y ksh
+
+      - name: Build & test
+        run: sudo --preserve-env=GITHUB_ACTIONS,CI .github/workflows/ci.sh ${{ matrix.compiler }} ${{ matrix.phase }}
