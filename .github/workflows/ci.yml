@@ -30,3 +30,8 @@ jobs:
 
       - name: Build & test
         run: sudo --preserve-env=GITHUB_ACTIONS,CI .github/workflows/ci.sh ${{ matrix.compiler }} ${{ matrix.phase }}
+      - name: Download a single artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ksh-logs
+
